@@ -4,7 +4,7 @@ import http from '../utils/http'
 export function useNotifications() {
   const notifications = reactive({
     unread_count: 0,
-    items: [],
+    items: []
   })
 
   async function loadNotifications() {
@@ -27,6 +27,6 @@ export function useNotifications() {
     notifications,
     loadNotifications,
     markNotificationRead,
-    markAllNotificationsRead,
+    markAllNotificationsRead
   }
 }

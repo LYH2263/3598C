@@ -6,12 +6,12 @@ export function useConsumptions() {
   const consumptionFilters = reactive({
     category: '',
     start_date: '',
-    end_date: '',
+    end_date: ''
   })
   const consumptions = ref([])
   const consumptionStats = reactive({
     category_stats: [],
-    daily_trend: [],
+    daily_trend: []
   })
 
   async function loadConsumptions() {
@@ -35,14 +35,14 @@ export function useConsumptions() {
   function consumeStatsForCategory() {
     return consumptionStats.category_stats.map((item) => ({
       label: categoryMap[item.category] || item.category,
-      value: formatMoney(item.total_cost),
+      value: formatMoney(item.total_cost)
     }))
   }
 
   function consumeStatsForTrend() {
     return consumptionStats.daily_trend.map((item) => ({
       label: item.day,
-      value: formatMoney(item.total_cost),
+      value: formatMoney(item.total_cost)
     }))
   }
 
@@ -58,6 +58,6 @@ export function useConsumptions() {
     loadConsumptionStats,
     consumeStatsForCategory,
     consumeStatsForTrend,
-    loadAll,
+    loadAll
   }
 }

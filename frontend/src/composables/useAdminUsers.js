@@ -7,7 +7,7 @@ export function useAdminUsers(onWalletAction) {
   const adminUserFilters = reactive({
     keyword: '',
     role: '',
-    is_active: '',
+    is_active: ''
   })
 
   async function loadAdminUsers() {
@@ -38,7 +38,7 @@ export function useAdminUsers(onWalletAction) {
       {
         confirmButtonText: '提交',
         cancelButtonText: '取消',
-        inputPlaceholder: '请输入说明',
+        inputPlaceholder: '请输入说明'
       }
     ).catch(() => null)
 
@@ -46,12 +46,12 @@ export function useAdminUsers(onWalletAction) {
 
     await http.post(`/billing/wallets/${row.id}/action/`, {
       action,
-      reason: result.value || '',
+      reason: result.value || ''
     })
     ElNotification({
       title: action === 'freeze' ? '账户已冻结' : '账户已解冻',
       message: '钱包状态更新成功。',
-      type: 'success',
+      type: 'success'
     })
     await Promise.all([loadAdminUsers(), onWalletAction ? onWalletAction() : Promise.resolve()])
   }
@@ -62,6 +62,6 @@ export function useAdminUsers(onWalletAction) {
     loadAdminUsers,
     updateUserRole,
     updateUserStatus,
-    walletAction,
+    walletAction
   }
 }

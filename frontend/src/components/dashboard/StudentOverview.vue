@@ -4,16 +4,16 @@ import { formatDateTime, formatMoney } from '../../composables/useFormatters'
 const props = defineProps({
   orderForm: {
     type: Object,
-    required: true,
+    required: true
   },
   walletLogs: {
     type: Array,
-    required: true,
+    required: true
   },
   actionLoading: {
     type: Boolean,
-    default: false,
-  },
+    default: false
+  }
 })
 
 const emit = defineEmits(['update:orderForm', 'submit'])
@@ -41,10 +41,7 @@ const emit = defineEmits(['update:orderForm', 'submit'])
           </el-select>
         </el-form-item>
         <el-form-item label="备注">
-          <el-input
-            v-model="props.orderForm.submit_remark"
-            placeholder="请输入订单备注（可选）"
-          />
+          <el-input v-model="props.orderForm.submit_remark" placeholder="请输入订单备注（可选）" />
         </el-form-item>
         <el-button
           type="primary"

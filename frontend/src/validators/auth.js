@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const loginSchema = z.object({
   account: z.string().min(1, '请输入账号'),
   password: z.string().min(8, '密码长度至少 8 位'),
-  captcha_answer: z.string().min(1, '请输入验证码结果'),
+  captcha_answer: z.string().min(1, '请输入验证码结果')
 })
 
 export const registerSchema = z
@@ -17,14 +17,14 @@ export const registerSchema = z
     security_answer: z.string().min(2, '请输入安全问题答案'),
     password: z.string().min(8, '密码长度至少 8 位'),
     confirm_password: z.string().min(8, '确认密码长度至少 8 位'),
-    captcha_answer: z.string().min(1, '请输入验证码结果'),
+    captcha_answer: z.string().min(1, '请输入验证码结果')
   })
   .superRefine((data, ctx) => {
     if (data.role === 'student' && !data.student_id?.trim()) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ['student_id'],
-        message: '学生角色必须填写学号',
+        message: '学生角色必须填写学号'
       })
     }
 
@@ -32,7 +32,7 @@ export const registerSchema = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ['phone'],
-        message: '手机号或邮箱至少填写一项',
+        message: '手机号或邮箱至少填写一项'
       })
     }
 
@@ -42,7 +42,7 @@ export const registerSchema = z
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ['email'],
-          message: '邮箱格式不正确',
+          message: '邮箱格式不正确'
         })
       }
     }
@@ -51,7 +51,7 @@ export const registerSchema = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ['confirm_password'],
-        message: '两次密码输入不一致',
+        message: '两次密码输入不一致'
       })
     }
   })
@@ -59,7 +59,7 @@ export const registerSchema = z
 export const resetCodeSchema = z.object({
   account: z.string().min(1, '请输入账号'),
   security_answer: z.string().min(2, '请输入安全问题答案'),
-  captcha_answer: z.string().min(1, '请输入验证码结果'),
+  captcha_answer: z.string().min(1, '请输入验证码结果')
 })
 
 export const resetSchema = z
@@ -69,14 +69,14 @@ export const resetSchema = z
     email_code: z.string().min(4, '请输入邮箱验证码'),
     new_password: z.string().min(8, '新密码长度至少 8 位'),
     confirm_password: z.string().min(8, '确认密码长度至少 8 位'),
-    captcha_answer: z.string().min(1, '请输入验证码结果'),
+    captcha_answer: z.string().min(1, '请输入验证码结果')
   })
   .superRefine((data, ctx) => {
     if (data.new_password !== data.confirm_password) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: ['confirm_password'],
-        message: '两次密码输入不一致',
+        message: '两次密码输入不一致'
       })
     }
   })

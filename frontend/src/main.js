@@ -10,11 +10,11 @@ import { useAuthStore } from './stores/auth'
 import './style.css'
 
 const app = createApp(App)
-app.config.errorHandler = (error) => {
+app.config.errorHandler = (_error) => {
   ElNotification({
     title: '页面异常',
     message: '页面出现异常，请刷新后重试。',
-    type: 'error',
+    type: 'error'
   })
 }
 

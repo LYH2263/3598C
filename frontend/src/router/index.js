@@ -6,33 +6,33 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/dashboard'
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue'),
-      meta: { guestOnly: true },
+      meta: { guestOnly: true }
     },
     {
       path: '/register',
       name: 'register',
       component: () => import('../views/RegisterView.vue'),
-      meta: { guestOnly: true },
+      meta: { guestOnly: true }
     },
     {
       path: '/reset-password',
       name: 'reset-password',
       component: () => import('../views/ResetPasswordView.vue'),
-      meta: { guestOnly: true },
+      meta: { guestOnly: true }
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('../views/DashboardView.vue'),
-      meta: { requiresAuth: true },
-    },
-  ],
+      meta: { requiresAuth: true }
+    }
+  ]
 })
 
 router.beforeEach((to) => {

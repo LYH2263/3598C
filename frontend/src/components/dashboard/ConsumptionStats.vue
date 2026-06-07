@@ -5,24 +5,24 @@ import { categoryMap, formatDateTime, formatMoney } from '../../composables/useF
 defineProps({
   consumptionFilters: {
     type: Object,
-    required: true,
+    required: true
   },
   consumptions: {
     type: Array,
-    required: true,
+    required: true
   },
   consumptionStats: {
     type: Object,
-    required: true,
+    required: true
   },
   consumeStatsForCategory: {
     type: Function,
-    required: true,
+    required: true
   },
   consumeStatsForTrend: {
     type: Function,
-    required: true,
-  },
+    required: true
+  }
 })
 
 defineEmits(['update:consumptionFilters', 'search'])
@@ -31,11 +31,7 @@ defineEmits(['update:consumptionFilters', 'search'])
 <template>
   <el-row :gutter="12" style="margin-bottom: 12px">
     <el-col :span="6">
-      <el-select
-        v-model="consumptionFilters.category"
-        style="width: 100%"
-        placeholder="按类别筛选"
-      >
+      <el-select v-model="consumptionFilters.category" style="width: 100%" placeholder="按类别筛选">
         <el-option label="全部类别" value="" />
         <el-option label="水费" value="water" />
         <el-option label="电费" value="electricity" />
@@ -65,15 +61,8 @@ defineEmits(['update:consumptionFilters', 'search'])
   </el-row>
 
   <div class="form-grid" style="margin-bottom: 14px">
-    <SimpleBarChart
-      title="分类消费金额（元）"
-      :items="consumeStatsForCategory()"
-    />
-    <SimpleBarChart
-      title="每日消费趋势（元）"
-      :items="consumeStatsForTrend()"
-      color="#2b9f6c"
-    />
+    <SimpleBarChart title="分类消费金额（元）" :items="consumeStatsForCategory()" />
+    <SimpleBarChart title="每日消费趋势（元）" :items="consumeStatsForTrend()" color="#2b9f6c" />
   </div>
 
   <el-table :data="consumptions" stripe border empty-text="暂无消费记录">

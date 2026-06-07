@@ -10,12 +10,12 @@ export function useOrders(onDataChange) {
   const orderForm = reactive({
     amount: null,
     channel: 'alipay',
-    submit_remark: '',
+    submit_remark: ''
   })
 
   const orderFilters = reactive({
     status: '',
-    user_id: '',
+    user_id: ''
   })
 
   const orders = ref([])
@@ -52,7 +52,7 @@ export function useOrders(onDataChange) {
       {
         confirmButtonText: '提交',
         cancelButtonText: '取消',
-        inputPlaceholder: '请输入审核备注',
+        inputPlaceholder: '请输入审核备注'
       }
     ).catch(() => null)
 
@@ -61,7 +61,7 @@ export function useOrders(onDataChange) {
     try {
       await http.post(`/billing/recharge-orders/${order.id}/review/`, {
         action,
-        review_remark: result.value || '',
+        review_remark: result.value || ''
       })
       ElNotification({ title: '审核完成', message: '订单状态已更新。', type: 'success' })
       if (onDataChange) await onDataChange()
@@ -76,6 +76,6 @@ export function useOrders(onDataChange) {
     orders,
     loadOrders,
     submitRechargeOrder,
-    reviewOrder,
+    reviewOrder
   }
 }

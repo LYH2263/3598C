@@ -6,7 +6,7 @@ export function useDashboard() {
     wallet: { balance: '0.00', is_frozen: false, frozen_reason: '' },
     summary: { total_recharge: '0.00', total_consumption: '0.00', pending_recharge_orders: 0 },
     recent_recharges: [],
-    recent_consumptions: [],
+    recent_consumptions: []
   })
 
   async function loadDashboard() {
@@ -16,6 +16,6 @@ export function useDashboard() {
 
   return {
     dashboard,
-    loadDashboard,
+    loadDashboard
   }
 }

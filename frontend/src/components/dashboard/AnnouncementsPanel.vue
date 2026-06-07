@@ -6,28 +6,23 @@ import { useAuthStore } from '../../stores/auth'
 defineProps({
   announcements: {
     type: Array,
-    required: true,
+    required: true
   },
   announcementForm: {
     type: Object,
-    required: true,
+    required: true
   },
   notifications: {
     type: Object,
-    required: true,
+    required: true
   },
   actionLoading: {
     type: Boolean,
-    default: false,
-  },
+    default: false
+  }
 })
 
-defineEmits([
-  'update:announcementForm',
-  'publish',
-  'markOneRead',
-  'markAllRead',
-])
+defineEmits(['update:announcementForm', 'publish', 'markOneRead', 'markAllRead'])
 
 const authStore = useAuthStore()
 const isAdmin = computed(() => authStore.user?.profile?.role === 'admin')
@@ -37,11 +32,7 @@ const isAdmin = computed(() => authStore.user?.profile?.role === 'admin')
   <template v-if="isAdmin">
     <el-form label-position="top" class="section-card" shadow="never" @submit.prevent>
       <el-form-item label="公告标题">
-        <el-input
-          v-model="announcementForm.title"
-          placeholder="请输入公告标题"
-          clearable
-        />
+        <el-input v-model="announcementForm.title" placeholder="请输入公告标题" clearable />
       </el-form-item>
       <el-form-item label="公告内容">
         <el-input
@@ -58,11 +49,7 @@ const isAdmin = computed(() => authStore.user?.profile?.role === 'admin')
           inactive-text="仅保存"
         />
       </el-form-item>
-      <el-button
-        type="primary"
-        :loading="actionLoading"
-        @click="$emit('publish')"
-      >
+      <el-button type="primary" :loading="actionLoading" @click="$emit('publish')">
         发布公告并推送通知
       </el-button>
     </el-form>
@@ -85,20 +72,11 @@ const isAdmin = computed(() => authStore.user?.profile?.role === 'admin')
 
     <el-card class="section-card" shadow="never">
       <h3 class="section-title">我的通知</h3>
-      <el-button
-        size="small"
-        style="margin-bottom: 8px"
-        @click="$emit('markAllRead')"
-      >
+      <el-button size="small" style="margin-bottom: 8px" @click="$emit('markAllRead')">
         全部标记已读
       </el-button>
       <el-table :data="notifications.items" stripe border empty-text="暂无通知">
-        <el-table-column
-          prop="title"
-          label="标题"
-          min-width="160"
-          show-overflow-tooltip
-        />
+        <el-table-column prop="title" label="标题" min-width="160" show-overflow-tooltip />
         <el-table-column label="类型" min-width="100">
           <template #default="{ row }">{{ row.notice_type_display }}</template>
         </el-table-column>
@@ -114,11 +92,7 @@ const isAdmin = computed(() => authStore.user?.profile?.role === 'admin')
         </el-table-column>
         <el-table-column label="操作" min-width="90">
           <template #default="{ row }">
-            <el-button
-              size="small"
-              :disabled="row.is_read"
-              @click="$emit('markOneRead', row)"
-            >
+            <el-button size="small" :disabled="row.is_read" @click="$emit('markOneRead', row)">
               已读
             </el-button>
           </template>

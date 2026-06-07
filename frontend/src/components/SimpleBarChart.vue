@@ -4,24 +4,24 @@ import { computed } from 'vue'
 const props = defineProps({
   title: {
     type: String,
-    default: '',
+    default: ''
   },
   items: {
     type: Array,
-    default: () => [],
+    default: () => []
   },
   labelKey: {
     type: String,
-    default: 'label',
+    default: 'label'
   },
   valueKey: {
     type: String,
-    default: 'value',
+    default: 'value'
   },
   color: {
     type: String,
-    default: '#2d73da',
-  },
+    default: '#2d73da'
+  }
 })
 
 const maxValue = computed(() => {
@@ -44,7 +44,10 @@ function widthPercent(value) {
       <div v-for="(item, idx) in items" :key="idx" class="viz-row">
         <div class="viz-label">{{ item[labelKey] }}</div>
         <div class="viz-bar-wrap">
-          <div class="viz-bar" :style="{ width: `${widthPercent(item[valueKey])}%`, background: color }"></div>
+          <div
+            class="viz-bar"
+            :style="{ width: `${widthPercent(item[valueKey])}%`, background: color }"
+          ></div>
         </div>
         <div class="viz-value">{{ item[valueKey] }}</div>
       </div>

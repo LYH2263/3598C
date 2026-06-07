@@ -3,8 +3,8 @@ import { ElNotification } from 'element-plus'
 import { useAuthStore, getAccessTokenFromStorage } from '../stores/auth'
 
 const http = axios.create({
-  baseURL: '/api',
-  timeout: 12000,
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  timeout: Number(import.meta.env.VITE_API_TIMEOUT) || 12000
 })
 
 http.interceptors.request.use((config) => {
@@ -33,7 +33,7 @@ http.interceptors.response.use(
       if (newAccess) {
         originalConfig.headers = {
           ...(originalConfig.headers || {}),
-          Authorization: `Bearer ${newAccess}`,
+          Authorization: `Bearer ${newAccess}`
         }
         return http(originalConfig)
       }
@@ -43,7 +43,7 @@ http.interceptors.response.use(
     ElNotification({
       title: '请求异常',
       message,
-      type: 'error',
+      type: 'error'
     })
 
     return Promise.reject(error)

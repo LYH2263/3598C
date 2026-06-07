@@ -30,10 +30,10 @@ export const useAuthStore = defineStore('auth', {
     accessToken: '',
     refreshToken: '',
     user: null,
-    rememberMe: false,
+    rememberMe: false
   }),
   getters: {
-    isLoggedIn: (state) => Boolean(state.accessToken),
+    isLoggedIn: (state) => Boolean(state.accessToken)
   },
   actions: {
     hydrate() {
@@ -78,7 +78,7 @@ export const useAuthStore = defineStore('auth', {
         access: data.access,
         refresh: data.refresh,
         user: data.user,
-        rememberMe: data.remember_me,
+        rememberMe: data.remember_me
       })
       return data
     },
@@ -106,7 +106,7 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         const { data } = await http.post('/auth/token/refresh/', {
-          refresh: this.refreshToken,
+          refresh: this.refreshToken
         })
         this.accessToken = data.access
         writeStorage(ACCESS_KEY, data.access, this.rememberMe)
@@ -122,8 +122,8 @@ export const useAuthStore = defineStore('auth', {
       this.user = data.user
       writeStorage(USER_KEY, JSON.stringify(data.user), this.rememberMe)
       return data.user
-    },
-  },
+    }
+  }
 })
 
 export function getAccessTokenFromStorage() {

@@ -29,7 +29,8 @@ const isAdmin = computed(() => authStore.user?.profile?.role === 'admin')
 
 const { dashboard, loadDashboard } = useDashboard()
 const { walletLogs, loadWalletLogs } = useWalletLogs()
-const { notifications, loadNotifications, markNotificationRead, markAllNotificationsRead } = useNotifications()
+const { notifications, loadNotifications, markNotificationRead, markAllNotificationsRead } =
+  useNotifications()
 
 async function onOrdersChanged() {
   await Promise.all([loadOrders(), loadDashboard(), loadNotifications()])
@@ -43,14 +44,8 @@ async function onWalletActionChanged() {
   await loadWalletLogs()
 }
 
-const {
-  orderForm,
-  orderFilters,
-  orders,
-  loadOrders,
-  submitRechargeOrder,
-  reviewOrder,
-} = useOrders(onOrdersChanged)
+const { orderForm, orderFilters, orders, loadOrders, submitRechargeOrder, reviewOrder } =
+  useOrders(onOrdersChanged)
 
 const {
   consumptionFilters,
@@ -60,15 +55,11 @@ const {
   loadConsumptionStats,
   consumeStatsForCategory,
   consumeStatsForTrend,
-  loadAll: loadConsumptionAll,
+  loadAll: loadConsumptionAll
 } = useConsumptions()
 
-const {
-  announcements,
-  announcementForm,
-  loadAnnouncements,
-  publishAnnouncement,
-} = useAnnouncements(onAnnouncementPublished)
+const { announcements, announcementForm, loadAnnouncements, publishAnnouncement } =
+  useAnnouncements(onAnnouncementPublished)
 
 const {
   adminUsers,
@@ -76,7 +67,7 @@ const {
   loadAdminUsers,
   updateUserRole,
   updateUserStatus,
-  walletAction,
+  walletAction
 } = useAdminUsers(onWalletActionChanged)
 
 async function handleSubmitRecharge() {
@@ -107,7 +98,7 @@ async function refreshAll() {
       loadConsumptionStats(),
       loadWalletLogs(),
       loadAnnouncements(),
-      loadNotifications(),
+      loadNotifications()
     ]
     if (isAdmin.value) tasks.push(loadAdminUsers())
     await Promise.all(tasks)
@@ -145,7 +136,9 @@ onMounted(async () => {
           <el-col :xs="24" :sm="18">
             <h2 class="section-title">学生水电充值管理系统</h2>
             <p style="margin: 0; color: var(--text-sub)">
-              当前身份：{{ isAdmin ? '管理员' : '学生' }} ｜ 未读通知：{{ notifications.unread_count }}
+              当前身份：{{ isAdmin ? '管理员' : '学生' }} ｜ 未读通知：{{
+                notifications.unread_count
+              }}
             </p>
           </el-col>
           <el-col :xs="24" :sm="6" style="text-align: right">

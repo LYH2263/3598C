@@ -15,7 +15,7 @@ const loading = ref(false)
 const captchaLoading = ref(false)
 const captcha = reactive({
   captcha_id: '',
-  question: '',
+  question: ''
 })
 
 const form = reactive({
@@ -28,7 +28,7 @@ const form = reactive({
   security_answer: '',
   password: '',
   confirm_password: '',
-  captcha_answer: '',
+  captcha_answer: ''
 })
 
 const isStudent = computed(() => form.role === 'student')
@@ -38,7 +38,7 @@ function applyZodError(result) {
   ElNotification({
     title: '输入校验失败',
     message: first?.message || '请检查输入内容。',
-    type: 'warning',
+    type: 'warning'
   })
 }
 
@@ -65,12 +65,12 @@ async function handleSubmit() {
   try {
     await authStore.register({
       ...form,
-      captcha_id: captcha.captcha_id,
+      captcha_id: captcha.captcha_id
     })
     ElNotification({
       title: '注册成功',
       message: '账号创建完成，请登录。',
-      type: 'success',
+      type: 'success'
     })
     await router.push('/login')
   } finally {
@@ -111,7 +111,11 @@ onMounted(refreshCaptcha)
       <el-row :gutter="12">
         <el-col :span="12">
           <el-form-item label="安全问题">
-            <el-input v-model="form.security_question" placeholder="例如：您的小学名称是？" clearable />
+            <el-input
+              v-model="form.security_question"
+              placeholder="例如：您的小学名称是？"
+              clearable
+            />
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -124,12 +128,22 @@ onMounted(refreshCaptcha)
       <el-row :gutter="12">
         <el-col :span="12">
           <el-form-item label="登录密码">
-            <el-input v-model="form.password" type="password" show-password placeholder="请输入登录密码" />
+            <el-input
+              v-model="form.password"
+              type="password"
+              show-password
+              placeholder="请输入登录密码"
+            />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="确认密码">
-            <el-input v-model="form.confirm_password" type="password" show-password placeholder="请再次输入密码" />
+            <el-input
+              v-model="form.confirm_password"
+              type="password"
+              show-password
+              placeholder="请再次输入密码"
+            />
           </el-form-item>
         </el-col>
       </el-row>
@@ -137,12 +151,16 @@ onMounted(refreshCaptcha)
       <el-form-item label="验证码">
         <el-space fill style="width: 100%">
           <el-input v-model="form.captcha_answer" placeholder="请输入计算结果" />
-          <el-button :loading="captchaLoading" @click="refreshCaptcha">{{ captcha.question || '获取验证码' }}</el-button>
+          <el-button :loading="captchaLoading" @click="refreshCaptcha">
+            {{ captcha.question || '获取验证码' }}
+          </el-button>
         </el-space>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" style="width: 100%" :loading="loading" @click="handleSubmit">创建账号</el-button>
+        <el-button type="primary" style="width: 100%" :loading="loading" @click="handleSubmit">
+          创建账号
+        </el-button>
       </el-form-item>
 
       <el-link type="primary" @click="router.push('/login')">已有账号，返回登录</el-link>

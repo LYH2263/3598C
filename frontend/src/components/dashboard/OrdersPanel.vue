@@ -1,17 +1,22 @@
 <script setup>
 import { computed } from 'vue'
-import { channelMap, orderStatusMap, formatMoney, formatDateTime } from '../../composables/useFormatters'
+import {
+  channelMap,
+  orderStatusMap,
+  formatMoney,
+  formatDateTime
+} from '../../composables/useFormatters'
 import { useAuthStore } from '../../stores/auth'
 
 defineProps({
   orders: {
     type: Array,
-    required: true,
+    required: true
   },
   orderFilters: {
     type: Object,
-    required: true,
-  },
+    required: true
+  }
 })
 
 const emit = defineEmits(['update:orderFilters', 'search', 'review'])

@@ -12,7 +12,7 @@ export function useAnnouncements(onDataChange) {
   const announcementForm = reactive({
     title: '',
     content: '',
-    is_active: true,
+    is_active: true
   })
 
   async function loadAnnouncements() {
@@ -29,7 +29,11 @@ export function useAnnouncements(onDataChange) {
 
     try {
       const { data } = await http.post('/notices/announcements/', announcementForm)
-      ElNotification({ title: '公告已发布', message: `已推送 ${data.push_count} 位用户。`, type: 'success' })
+      ElNotification({
+        title: '公告已发布',
+        message: `已推送 ${data.push_count} 位用户。`,
+        type: 'success'
+      })
       announcementForm.title = ''
       announcementForm.content = ''
       announcementForm.is_active = true
@@ -44,6 +48,6 @@ export function useAnnouncements(onDataChange) {
     announcements,
     announcementForm,
     loadAnnouncements,
-    publishAnnouncement,
+    publishAnnouncement
   }
 }

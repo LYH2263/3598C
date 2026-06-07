@@ -6,7 +6,7 @@ onErrorCaptured(() => {
   ElNotification({
     title: '页面异常',
     message: '页面出现异常，请稍后重试。',
-    type: 'error',
+    type: 'error'
   })
   return false
 })

@@ -4,12 +4,12 @@ import { formatMoney } from '../../composables/useFormatters'
 defineProps({
   adminUsers: {
     type: Array,
-    required: true,
+    required: true
   },
   adminUserFilters: {
     type: Object,
-    required: true,
-  },
+    required: true
+  }
 })
 
 defineEmits(['update:adminUserFilters', 'search', 'updateRole', 'updateStatus', 'walletAction'])
@@ -18,11 +18,7 @@ defineEmits(['update:adminUserFilters', 'search', 'updateRole', 'updateStatus', 
 <template>
   <el-row :gutter="12" style="margin-bottom: 12px">
     <el-col :span="8">
-      <el-input
-        v-model="adminUserFilters.keyword"
-        placeholder="搜索用户名/学号/手机号"
-        clearable
-      />
+      <el-input v-model="adminUserFilters.keyword" placeholder="搜索用户名/学号/手机号" clearable />
     </el-col>
     <el-col :span="6">
       <el-select v-model="adminUserFilters.role" style="width: 100%" placeholder="角色筛选">
@@ -32,11 +28,7 @@ defineEmits(['update:adminUserFilters', 'search', 'updateRole', 'updateStatus', 
       </el-select>
     </el-col>
     <el-col :span="6">
-      <el-select
-        v-model="adminUserFilters.is_active"
-        style="width: 100%"
-        placeholder="状态筛选"
-      >
+      <el-select v-model="adminUserFilters.is_active" style="width: 100%" placeholder="状态筛选">
         <el-option label="全部状态" value="" />
         <el-option label="启用" value="true" />
         <el-option label="禁用" value="false" />
