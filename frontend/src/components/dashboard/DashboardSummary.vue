@@ -1,5 +1,5 @@
 <script setup>
-import { formatMoney } from '../composables/useFormatters'
+import { formatMoney } from '../../composables/useFormatters'
 
 defineProps({
   dashboard: {
